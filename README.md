@@ -1,15 +1,7 @@
-Pauses Folding@home when a specified program is running. This allows FAH to run "While I'm working" but also makes FAH stop for resource-intensive apps.
+Starts specified program and pauses Folding@home while it is running.
 
 ```
-go install -ldflags -H=windowsgui github.com/MakotoE/fah-pauser
+usage: fah-pauser <path>
 ```
 
-Create `~/.config/fah-pauser.yml` (or `%userprofile%\.config\fah-pauser.yml`) and list programs that should pause FAH when any of them are running.
-
-```
-PauseOn:
-- devenv.exe
-- rFactor2.exe
-```
-
-The system processes list is polled once every five minutes.
+This does not work with apps that spawn processes, like most Windows games. Use [fah-pauser-daemon](https://github.com/MakotoE/fah-pauser-daemon) for those.
