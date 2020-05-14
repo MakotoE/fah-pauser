@@ -10,12 +10,16 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		const usage = "usage: fah-pauser <path>\nStarts specified program and pauses Folding@home while it is running."
+		const usage = "usage: fah-pauser <command> <args>\nStarts specified program and pauses Folding@home while it is running."
 		fmt.Println(usage)
 		return
 	}
 
-	cmd := exec.Command(os.Args[1])
+	var args []string
+	if len(os.Args) > 2 {
+		args = os.Args[2:]
+	}
+	cmd := exec.Command(os.Args[1], args...)
 	if err := cmd.Start(); err != nil {
 		log.Panicln(err)
 	}
